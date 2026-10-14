@@ -1,4 +1,4 @@
-from src.states.blog_state import BlogState, Blog
+from backend.src.states.blog_state import BlogState, Blog
 
 class BlogNode:
     """A class to reperesent the blog node"""

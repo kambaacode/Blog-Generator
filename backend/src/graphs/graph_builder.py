@@ -1,7 +1,7 @@
 from langgraph.graph import START, END, StateGraph
-from src.llms.groq_llm import GroqModel
-from src.states.blog_state import BlogState
-from src.nodes.blog_node import BlogNode
+from backend.src.llms.groq_llm import GroqModel
+from backend.src.states.blog_state import BlogState
+from backend.src.nodes.blog_node import BlogNode
 
 class GraphBuilder:
     def __init__(self, llm):
@@ -22,4 +22,9 @@ class GraphBuilder:
         self.graph.add_edge(START, "title_creation")
         self.graph.add_edge("title_creation", "content_generation")
         self.graph.add_edge("content_generation", END)
-        
+
+    def setup_graph(self, usecase):
+        if usecase == "topic":
+            self.build_topic_graph()
+            
+        return self.graph.compile()
